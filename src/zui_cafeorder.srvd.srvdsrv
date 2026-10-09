@@ -1,0 +1,7 @@
+@EndUserText.label: 'Cafe Order UI Service'
+define service ZUI_CafeOrder {
+  expose ZC_CafeOrder as CafeOrder;
+  expose ZC_CafeOrderItem as OrderItem;
+  expose ZI_CafeCustomer as Customer;
+  expose ZI_CafeProduct as Product;
+}

@@ -1,0 +1,23 @@
+@EndUserText.label : 'Coffeeshop: Product (Menu Item)'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zcafe_product {
+
+  key mandt      : mandt not null;
+  key product_id : sysuuid_c32 not null;
+  @EndUserText.label : 'Product Name'
+  product_name   : abap.char(60);
+  @EndUserText.label : 'Category (COFFEE/FOOD/COLD)'
+  category       : abap.char(20);
+  @EndUserText.label : 'Standard Price'
+  @Semantics.amount.currencyCode : 'zcafe_product.currency'
+  price          : abap.curr(11,2);
+  currency       : waers;
+  @EndUserText.label : 'Active on Menu (X=Yes)'
+  is_active      : abap.char(1);
+  erdat          : erdat;
+  ernam          : ernam;
+
+}

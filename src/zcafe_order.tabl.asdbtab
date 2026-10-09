@@ -1,0 +1,24 @@
+@EndUserText.label : 'Coffeeshop: Order Header'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zcafe_order {
+
+  key mandt    : mandt not null;
+  key order_id : sysuuid_c32 not null;
+  customer_id  : sysuuid_c32;
+  @EndUserText.label : 'Order Date'
+  order_date   : abap.dats;
+  @EndUserText.label : 'Order Time'
+  order_time   : abap.tims;
+  @EndUserText.label : 'Status: O=Open P=Paid X=Cancelled'
+  order_status : abap.char(1);
+  @EndUserText.label : 'Order Total Amount'
+  @Semantics.amount.currencyCode : 'zcafe_order.currency'
+  total_amt    : abap.curr(11,2);
+  currency     : waers;
+  erdat        : erdat;
+  ernam        : ernam;
+
+}

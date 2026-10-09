@@ -1,0 +1,67 @@
+managed implementation in class zbp_i_cafeorder unique;
+strict ( 2 );
+
+define behavior for ZI_CafeOrder alias Order
+persistent table zcafe_order
+lock master
+authorization master ( global )
+etag master CreatedOn
+{
+  create;
+  update;
+  delete;
+
+  field ( readonly ) TotalAmt, CreatedOn, CreatedBy;
+  field ( readonly : update ) OrderId;
+
+  association _Item { create ( features : instance ); }
+
+  action ( features : instance ) Pay result [1] $self;
+  action ( features : instance ) Cancel result [1] $self;
+
+  determination recalcTotalAmount on modify { field TotalAmt; }
+  determination setDefaults on save { create; }
+
+  mapping for zcafe_order
+  {
+    OrderId     = order_id;
+    CustomerId  = customer_id;
+    OrderDate   = order_date;
+    OrderTime   = order_time;
+    OrderStatus = order_status;
+    TotalAmt    = total_amt;
+    Currency    = currency;
+    CreatedOn   = erdat;
+    CreatedBy   = ernam;
+  }
+}
+
+define behavior for ZI_CafeOrderItem alias OrderItem
+persistent table zcafe_orditm
+lock dependent by _Order
+authorization dependent by _Order
+etag master CreatedOn
+{
+  update ( features : instance );
+  delete ( features : instance );
+  field ( readonly ) OrderId, PriceSold, CreatedOn, CreatedBy;
+  field ( readonly : update ) ItemNum;
+
+  association _Order;
+
+  determination setPriceSold on modify { field ProductId; }
+  determination recalcTotalAmount on modify { field Quantity, PriceSold; }
+
+  mapping for zcafe_orditm
+  {
+    OrderId   = order_id;
+    ItemNum   = item_num;
+    ProductId = product_id;
+    Quantity  = quantity;
+    Unit      = unit;
+    PriceSold = price_sold;
+    Currency  = currency;
+    CreatedOn = erdat;
+    CreatedBy = ernam;
+  }
+}

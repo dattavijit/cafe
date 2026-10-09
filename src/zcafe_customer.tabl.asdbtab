@@ -1,0 +1,23 @@
+@EndUserText.label : 'Coffeeshop: Customer'
+@AbapCatalog.enhancement.category : #NOT_EXTENSIBLE
+@AbapCatalog.tableCategory : #TRANSPARENT
+@AbapCatalog.deliveryClass : #A
+@AbapCatalog.dataMaintenance : #ALLOWED
+define table zcafe_customer {
+
+  key mandt       : mandt not null;
+  key customer_id : sysuuid_c32 not null;
+  @EndUserText.label : 'First Name'
+  first_name      : abap.char(40);
+  @EndUserText.label : 'Last Name'
+  last_name       : abap.char(40);
+  @EndUserText.label : 'Email Address'
+  email           : abap.char(60);
+  @EndUserText.label : 'Phone Number'
+  phone           : abap.char(20);
+  @EndUserText.label : 'Loyalty Points Balance'
+  loyalty_pts     : abap.numc(8);
+  erdat           : erdat;
+  ernam           : ernam;
+
+}

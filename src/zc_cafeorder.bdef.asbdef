@@ -1,0 +1,24 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_CafeOrder alias Order
+use etag
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Pay;
+  use action Cancel;
+
+  use association _Item { create; }
+}
+
+define behavior for ZC_CafeOrderItem alias OrderItem
+use etag
+{
+  use update;
+  use delete;
+
+  use association _Order;
+}
