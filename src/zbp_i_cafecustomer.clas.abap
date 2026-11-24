@@ -1,0 +1,5 @@
+CLASS zbp_i_cafecustomer DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_cafecustomer.
+ENDCLASS.
+
+CLASS zbp_i_cafecustomer IMPLEMENTATION.
+ENDCLASS.

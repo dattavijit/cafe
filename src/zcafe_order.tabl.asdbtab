@@ -5,20 +5,21 @@
 @AbapCatalog.dataMaintenance : #ALLOWED
 define table zcafe_order {
 
-  key mandt    : mandt not null;
-  key order_id : sysuuid_c32 not null;
-  customer_id  : sysuuid_c32;
+  key mandt          : mandt not null;
+  key order_id       : sysuuid_c32 not null;
+  customer_id        : sysuuid_c32;
   @EndUserText.label : 'Order Date'
-  order_date   : abap.dats;
+  order_date         : abap.dats;
   @EndUserText.label : 'Order Time'
-  order_time   : abap.tims;
+  order_time         : abap.tims;
   @EndUserText.label : 'Status: O=Open P=Paid X=Cancelled'
-  order_status : abap.char(1);
+  order_status       : abap.char(1);
   @EndUserText.label : 'Order Total Amount'
   @Semantics.amount.currencyCode : 'zcafe_order.currency'
-  total_amt    : abap.curr(11,2);
-  currency     : waers;
-  erdat        : erdat;
-  ernam        : ernam;
+  total_amt          : abap.curr(11,2);
+  currency           : waers;
+  erdat              : erdat;
+  ernam              : ernam;
+  local_last_changed : abp_locinst_lastchange_tstmpl;
 
 }

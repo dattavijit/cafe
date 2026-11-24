@@ -1,0 +1,28 @@
+managed implementation in class zbp_i_cafecustomer unique;
+strict ( 2 );
+
+define behavior for ZI_CafeCustomer alias Customer
+persistent table zcafe_customer
+lock master
+authorization master ( global )
+early numbering
+{
+  create ; //( authorization : global );
+  update;
+
+  field ( readonly ) CustomerId;
+
+  determination setCreated on save { create; }
+
+  mapping for zcafe_customer
+    {
+      CustomerId    = customer_id;
+      FirstName     = first_name;
+      LastName      = last_name;
+      Email         = email;
+      Phone         = phone;
+      LoyaltyPoints = loyalty_pts;
+      CreatedOn     = erdat;
+      CreatedBy     = ernam;
+    }
+}

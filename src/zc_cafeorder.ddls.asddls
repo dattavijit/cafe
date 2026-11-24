@@ -1,4 +1,4 @@
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Cafe Order Projection'
 @Metadata.allowExtensions: true
 define root view entity ZC_CafeOrder
@@ -7,6 +7,7 @@ define root view entity ZC_CafeOrder
 {
   key OrderId,
       CustomerId,
+      CustomerName,
       OrderDate,
       OrderTime,
       OrderStatus,
@@ -14,6 +15,7 @@ define root view entity ZC_CafeOrder
       Currency,
       CreatedOn,
       CreatedBy,
+      LocalLastChanged,
       /* Associations */
       _Item : redirected to composition child ZC_CafeOrderItem,
       _Customer

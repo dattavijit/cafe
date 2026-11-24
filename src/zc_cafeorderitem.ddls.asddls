@@ -1,4 +1,4 @@
-@AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #NOT_REQUIRED
 @EndUserText.label: 'Cafe Order Item Projection'
 @Metadata.allowExtensions: true
 define view entity ZC_CafeOrderItem
@@ -13,6 +13,7 @@ define view entity ZC_CafeOrderItem
       Currency,
       CreatedOn,
       CreatedBy,
+      LocalLastChanged,
       /* Associations */
       _Order : redirected to parent ZC_CafeOrder,
       _Product

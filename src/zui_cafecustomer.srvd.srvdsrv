@@ -1,0 +1,4 @@
+@EndUserText.label: 'Cafe Customer Management App'
+define service ZUI_CAFECUSTOMER {
+  expose ZC_CafeCustomer as Customer;
+}

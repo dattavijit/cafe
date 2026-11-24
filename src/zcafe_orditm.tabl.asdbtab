@@ -5,21 +5,22 @@
 @AbapCatalog.dataMaintenance : #ALLOWED
 define table zcafe_orditm {
 
-  key mandt    : mandt not null;
-  key order_id : sysuuid_c32 not null;
+  key mandt          : mandt not null;
+  key order_id       : sysuuid_c32 not null;
   @EndUserText.label : 'Item Number (0010, 0020 ...)'
-  key item_num : abap.numc(4) not null;
-  product_id   : sysuuid_c32;
+  key item_num       : abap.numc(4) not null;
+  product_id         : sysuuid_c32;
   @EndUserText.label : 'Quantity Ordered'
   @Semantics.quantity.unitOfMeasure : 'zcafe_orditm.unit'
-  quantity     : abap.quan(5,0);
+  quantity           : abap.quan(5,0);
   @EndUserText.label : 'Unit of Measure (EA)'
-  unit         : abap.unit(3);
+  unit               : abap.unit(3);
   @EndUserText.label : 'Price at Time of Sale (snapshot)'
   @Semantics.amount.currencyCode : 'zcafe_orditm.currency'
-  price_sold   : abap.curr(11,2);
-  currency     : waers;
-  erdat        : erdat;
-  ernam        : ernam;
+  price_sold         : abap.curr(11,2);
+  currency           : waers;
+  erdat              : erdat;
+  ernam              : ernam;
+  local_last_changed : abp_locinst_lastchange_tstmpl;
 
 }

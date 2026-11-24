@@ -1,1 +1,1 @@
-{"name":"ZUI_CAFEORDER_O4","type":"SRVB/SVB","description":"Cafe Order UI Service OData V4","published":true,"bindingType":"ODATA","bindingVersion":"V4","serviceDefName":"ZUI_CAFEORDER"}
+{"name":"ZUI_CAFEORDER_O4","type":"SRVB/SVB","description":"Cafe Order UI Service Binding","published":true,"bindingType":"ODATA","bindingVersion":"V4","serviceDefName":"ZUI_CAFEORDER"}

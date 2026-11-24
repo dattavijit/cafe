@@ -5,14 +5,15 @@ define behavior for ZI_CafeOrder alias Order
 persistent table zcafe_order
 lock master
 authorization master ( global )
-etag master CreatedOn
+early numbering
+etag master LocalLastChanged
 {
   create;
   update;
   delete;
 
-  field ( readonly ) TotalAmt, CreatedOn, CreatedBy;
-  field ( readonly : update ) OrderId;
+  field ( readonly ) OrderId, TotalAmt, CreatedOn, CreatedBy, LocalLastChanged;
+
 
   association _Item { create ( features : instance ); }
 
@@ -33,6 +34,7 @@ etag master CreatedOn
     Currency    = currency;
     CreatedOn   = erdat;
     CreatedBy   = ernam;
+    LocalLastChanged = local_last_changed;
   }
 }
 
@@ -40,12 +42,13 @@ define behavior for ZI_CafeOrderItem alias OrderItem
 persistent table zcafe_orditm
 lock dependent by _Order
 authorization dependent by _Order
-etag master CreatedOn
+early numbering
+etag master LocalLastChanged
 {
   update ( features : instance );
   delete ( features : instance );
-  field ( readonly ) OrderId, PriceSold, CreatedOn, CreatedBy;
-  field ( readonly : update ) ItemNum;
+  field ( readonly ) OrderId, ItemNum, PriceSold, CreatedOn, CreatedBy, LocalLastChanged;
+
 
   association _Order;
 
@@ -63,5 +66,6 @@ etag master CreatedOn
     Currency  = currency;
     CreatedOn = erdat;
     CreatedBy = ernam;
+    LocalLastChanged = local_last_changed;
   }
 }
