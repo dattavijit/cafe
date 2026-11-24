@@ -5,6 +5,7 @@ REPORT zcafe_insert_testdata.
 *& Inserts sample records into ZCAFE_CUSTOMER, ZCAFE_PRODUCT,
 *&                             ZCAFE_ORDER,    ZCAFE_ORDITM
 *& Run in SE38. Safe to re-run -- clears all rows for sy-mandt first.
+*& Orders and items also get LOCAL_LAST_CHANGED (etag field) set.
 *&---------------------------------------------------------------------*
 
 CONSTANTS:
@@ -111,6 +112,7 @@ FORM insert_orders.
   ls-erdat    = sy-datum.
   ls-ernam    = sy-uname.
   ls-currency = 'USD'.
+  GET TIME STAMP FIELD ls-local_last_changed.
 
   ls-order_id = gc_oid_001. ls-customer_id = gc_cid_alice. ls-order_date = '20261001'. ls-order_time = '082500'. ls-order_status = 'P'. ls-total_amt = '8.00'.  APPEND ls TO lt.
   ls-order_id = gc_oid_002. ls-customer_id = gc_cid_bob.   ls-order_date = '20261002'. ls-order_time = '103000'. ls-order_status = 'P'. ls-total_amt = '11.00'. APPEND ls TO lt.
@@ -135,6 +137,7 @@ FORM insert_order_items.
   ls-ernam    = sy-uname.
   ls-unit     = 'EA'.
   ls-currency = 'USD'.
+  GET TIME STAMP FIELD ls-local_last_changed.
 
   ls-order_id = gc_oid_001. ls-item_num = '0010'. ls-product_id = gc_pid_latte.   ls-quantity = 1. ls-price_sold = '4.50'. APPEND ls TO lt.
   ls-order_id = gc_oid_001. ls-item_num = '0020'. ls-product_id = gc_pid_croisnt. ls-quantity = 1. ls-price_sold = '3.50'. APPEND ls TO lt.
